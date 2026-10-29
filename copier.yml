@@ -1,0 +1,10 @@
+_subdirectory: template
+
+project_name:
+  type: str
+  help: What is your project name?
+
+include_ai:
+  type: bool
+  help: Include AI assistant config?
+  default: false
