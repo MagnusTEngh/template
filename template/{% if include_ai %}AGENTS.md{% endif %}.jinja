@@ -1,3 +1,17 @@
 # {{ project_name }}
 
-Guidance for AI coding assistants working in this repo.
+## Task tracking
+This project uses bd (beads) for issue tracking. Do not keep plans in markdown files.
+
+- `bd ready` lists unblocked work.
+- `bd show <id>` shows details.
+- `bd update <id> --claim` claims a task.
+- `bd create "Title" -p <priority>` files new work.
+- `bd close <id> "reason"` finishes a task.
+- `bd remember "insight"` stores project memory.
+
+## Roles
+Load the matching skill from `.agents/skills/`:
+- `leader`: plans and delegates
+- `worker`: implements one issue
+- `reviewer`: reviews one change, read-only
