@@ -1,0 +1,18 @@
+# Architecture Overview
+
+## Purpose
+
+
+
+## Architecture
+
+Describe the high-level architecture.
+
+Include a diagram where useful.
+
+## Technology Stack
+
+| Area | Technology | Purpose |
+|------|------------|---------|
+| | | |
+
