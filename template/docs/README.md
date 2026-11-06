@@ -7,4 +7,4 @@
 
 ## Development
 
-- [Testing](development/testing.md)
+- [Development guide](development/README.md)
