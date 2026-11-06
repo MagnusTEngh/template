@@ -1,0 +1,10 @@
+# Rules for documentation
+
+- Every document should have one clear purpose.
+- Use relative links between Markdown files.
+- Include examples only where they improve understanding.
+- Keep diagrams close to the concepts they explain.
+- Document commands with expected outcomes.
+- Never commit secrets, credentials, or real environment values.
+- Update documentation whenever relevant functionality changes.
+- Prefer updating existing documentation over creating duplicate documents.
