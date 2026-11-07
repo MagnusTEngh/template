@@ -4,7 +4,11 @@ project_name:
   type: str
   help: What is your project name?
 
-include_ai:
-  type: bool
-  help: Include AI assistant config?
-  default: false
+components:
+  type: multiselect
+  help: Which components do you want to include?
+  choices:
+    - nix
+    - python
+    - agents
+    - docs
