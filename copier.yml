@@ -14,5 +14,9 @@ components:
     - agents
 
 _exclude:
+  - "{% if 'agents' not in components %}AGENTS.md{% endif %}"
   - "{% if 'agents' not in components %}.agents/**{% endif %}"
-  - "{% if 'python' not in components %}python/**{% endif %}"
+  - "{% if 'nix' not in components %}flake.nix{% endif %}"
+  - "{% if 'python' not in components %}src/**{% endif %}"
+  - "{% if 'python' not in components %}pyproject.toml{% endif %}"
+  - "{% if 'python' not in components %}python-version{% endif %}"
