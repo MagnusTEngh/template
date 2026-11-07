@@ -1,1 +1,65 @@
 # {{ project_name }}
+
+## Prek Hooks
+
+This project uses [Prek](https://github.com/prek/prek) for pre-commit hooks. Each hook can be run individually and set as required independently in GitHub workflows.
+
+### Always Present
+
+- **markdownlint**: Lints markdown files for style and consistency
+
+### Available Hooks by Component
+
+{% if 'nix' in components %}
+#### Nix
+
+- **nixfmt**: Formats Nix files
+- **statix**: Lints Nix files for common issues
+- **deadnix**: Checks for dead code in Nix files
+
+{% endif %}
+{% if 'python' in components %}
+#### Python
+
+- **ty**: Type checking with ty
+- **pytest**: Runs Python tests
+- **ruff**: Lints Python files
+- **ruff-format**: Formats Python files
+
+{% endif %}
+
+### Usage
+
+Run all hooks:
+```bash
+prek run
+```
+
+Run specific stage:
+```bash
+prek run --stage always
+{% if 'nix' in components %}
+prek run --stage nix
+{% endif %}
+{% if 'python' in components %}
+prek run --stage python
+{% endif %}
+```
+
+Run specific hook:
+```bash
+prek run --hook markdownlint
+{% if 'nix' in components %}
+prek run --hook nixfmt
+prek run --hook statix
+prek run --hook deadnix
+{% endif %}
+{% if 'python' in components %}
+prek run --hook ty
+prek run --hook pytest
+prek run --hook ruff
+prek run --hook ruff-format
+{% endif %}
+```
+
+See [`.prek/README.md`](.prek/README.md) for more details.
