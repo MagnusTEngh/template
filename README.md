@@ -6,6 +6,10 @@ Repository template for projects.
 
 pre-commit boilerplate, which includes tools for each component if applicable.
 
+## Prek
+
+This template uses [Prek](https://github.com/prek/prek) for pre-commit hooks. Each hook can be run individually and set as required independently in GitHub workflows. Hooks are organized by component and only included if the component is active.
+
 ## Components 
 
 Self contained components that can be toggled.
@@ -24,19 +28,19 @@ Adds architecture and ADR skeleton to build detailed and useful documentation. I
 
 Adds a flake.nix file to fill out with the project dependencies and devshells.
 
-pre-commit additions:
+Prek hooks:
 
-- nixfmt
-- statix
-- deadnix
+- **nixfmt**: Formats Nix files
+- **statix**: Lints Nix files for common issues
+- **deadnix**: Checks for dead code in Nix files
 
-### Python 
+### Python
 
 Consists of a uv project boilerplate for the project.
 
-pre-commit additions:
+Prek hooks:
 
-- ty
-- pytest
-- ruff
-- ruff format
+- **ty**: Type checking with ty
+- **pytest**: Runs Python tests
+- **ruff**: Lints Python files
+- **ruff-format**: Formats Python files
