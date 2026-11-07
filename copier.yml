@@ -5,10 +5,14 @@ project_name:
   help: What is your project name?
 
 components:
-  type: multiselect
-  help: Which components do you want to include?
+  type: str
+  multiselect: true
+  help: Which components should be included?
   choices:
     - nix
     - python
     - agents
-    - docs
+
+_exclude:
+  - "{% if 'agents' not in components %}.agents/**{% endif %}"
+  - "{% if 'python' not in components %}python/**{% endif %}"
