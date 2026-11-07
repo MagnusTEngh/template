@@ -24,6 +24,19 @@ Adds architecture and ADR skeleton to build detailed and useful documentation. I
 
 Adds a flake.nix file to fill out with the project dependencies and devshells.
 
+pre-commit additions:
+
+- nixfmt
+- statix
+- deadnix
+
 ### Python 
 
 Consists of a uv project boilerplate for the project.
+
+pre-commit additions:
+
+- ty
+- pytest
+- ruff
+- ruff format
