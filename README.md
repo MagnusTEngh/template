@@ -14,6 +14,10 @@ This template uses [Prek](https://github.com/prek/prek) for pre-commit hooks. Ea
 
 Self contained components that can be toggled.
 
+### Git
+
+Adds Git configuration files including `.gitattributes` for file handling and `.gitmessage` for commit message templates.
+
 ### Agents
 
 Adds some boilerplate skills and tools to enable efficient use of agents.

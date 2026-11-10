@@ -9,11 +9,14 @@ components:
   multiselect: true
   help: Which components should be included?
   choices:
+    - git
     - nix
     - python
     - agents
 
 _exclude:
+  - "{% if 'git' not in components %}.gitattributes{% endif %}"
+  - "{% if 'git' not in components %}.gitmessage{% endif %}"
   - "{% if 'agents' not in components %}AGENTS.md{% endif %}"
   - "{% if 'agents' not in components %}.agents/**{% endif %}"
   - "{% if 'nix' not in components %}flake.nix{% endif %}"
