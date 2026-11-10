@@ -27,3 +27,7 @@ Load the matching skill from `.agents/skills/`:
 - Prefer existing documentation over assumptions when determining project conventions, architecture, and workflows.
 - If documentation is missing, outdated, or inconsistent with the codebase, take note and update it when appropriate.
 - If a change introduces a significant architectural decision, propose a new ADR.
+
+№# Rules
+
+- Follow .gitmessage when making commits
