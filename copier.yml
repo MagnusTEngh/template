@@ -14,6 +14,14 @@ components:
     - python
     - agents
 
+_tasks:
+  - if: "'git' in components"
+    cmd: |
+      if [ ! -d .git ]; then
+        git init
+      fi
+    help: Initialize git repository if not already present
+
 _exclude:
   - "{% if 'git' not in components %}.gitattributes{% endif %}"
   - "{% if 'git' not in components %}.gitmessage{% endif %}"
