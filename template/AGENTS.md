@@ -4,12 +4,12 @@
 
 This project uses bd (beads) for issue tracking. Do not keep plans in markdown files.
 
-- `bd ready` lists unblocked work.
-- `bd show <id>` shows details.
-- `bd update <id> --claim` claims a task.
-- `bd create "Title" -p <priority>` files new work.
-- `bd close <id> "reason"` finishes a task.
-- `bd remember "insight"` stores project memory.
+- `bd ready` lists unblocked work
+- `bd show <id>` shows details
+- `bd update <id> --claim` claims a task
+- `bd create "Title" -p <priority>` files new work
+- `bd close <id> "reason"` finishes a task
+- `bd remember "insight"` stores project memory
 
 ## Roles
 
@@ -21,13 +21,14 @@ Load the matching skill from `.agents/skills/`:
 
 ## Context
 
-- Before starting a task, check `docs/README.md` for relevant project documentation.
-- When navigating docs/ always check a folders README.md first to find which files are relevant.
-- Consult additional documentation selectively, focusing only on information relevant to the current task.
-- Prefer existing documentation over assumptions when determining project conventions, architecture, and workflows.
-- If documentation is missing, outdated, or inconsistent with the codebase, take note and update it when appropriate.
-- If a change introduces a significant architectural decision, propose a new ADR.
+- Before starting a task, check `docs/README.md` for relevant project documentation
+- When navigating docs/ always check a folders README.md first to find which files are relevant
+- Consult additional documentation selectively, focusing only on information relevant to the current task
+- Prefer existing documentation over assumptions when determining project conventions, architecture, and workflows
+- If documentation is missing, outdated, or inconsistent with the codebase, take note and update it when appropriate
+- If a change introduces a significant architectural decision, propose a new ADR
 
-№# Rules
+## Rules
 
 - Follow .gitmessage when making commits
+- Follow docs/rules.md when changing docs/ content
