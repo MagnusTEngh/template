@@ -38,6 +38,18 @@
       "rangeStrategy": "bump"
     },
     {% endif %}
+    {% if 'python' in components %}
+    {
+      "description": "Python dependencies (uv/pip)",
+      "matchManagers": ["pip"],
+      "matchFileNames": ["pyproject.toml", "requirements.txt", "uv.lock"],
+      "matchPackagePatterns": ["*"],
+      "groupName": "python dependencies",
+      "groupSlug": "python",
+      "enabled": true,
+      "rangeStrategy": "bump"
+    },
+    {% endif %}
     {
       "description": "Group all updates together",
       "matchPackagePatterns": ["*"],
