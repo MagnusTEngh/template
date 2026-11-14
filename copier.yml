@@ -14,6 +14,7 @@ components:
     - python
     - agents
     - renovate
+    - docs
 
 renovate_level:
   type: str
@@ -45,4 +46,7 @@ _exclude:
   - "{% if 'python' not in components %}.python-version{% endif %}"
   - "{% if 'python' not in components %}.github/workflows/tests.yml{% endif %}"
   - "{% if 'python' not in components %}uv.lock{% endif %}"
+  - "{% if 'docs' not in components %}docs/**{% endif %}"
+  - "{% if 'docs' not in components %}great-docs.yml{% endif %}"
+  - "{% if 'docs' not in components %}scripts/coverage_page.py{% endif %}"
   - "{% if 'renovate' not in components %}.github/renovate.json{% endif %}"

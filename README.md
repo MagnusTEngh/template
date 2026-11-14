@@ -24,9 +24,22 @@ Adds some boilerplate skills and tools to enable efficient use of agents.
 
 ### Docs
 
-Scaffolding for a detailed and structured docs/ folder.
+Scaffolding for a detailed and structured docs/ folder using [Great Docs](https://github.com/posit-dev/great-docs).
 
 Adds architecture and ADR skeleton to build detailed and useful documentation. If agents are included, it adds a curator to help maintain the documentation.
+
+**Local Usage:**
+
+- Install [Quarto](https://quarto.org/) for rendering
+- `uv sync --all-groups` to install great-docs
+- `uv run great-docs build` to build the site
+- `uv run great-docs preview` to preview locally
+
+**Features:**
+- All existing docs/ content is included as the User Guide
+- Test coverage results are displayed in the docs site at `/coverage/`
+- Site is published to `https://<owner>.github.io/<repo>/`
+- One-time setup: Settings → Pages → Source: "GitHub Actions" (or `gh api -X POST repos/<owner>/<repo>/pages -f build_type=workflow`)
 
 ### Nix
 
@@ -42,6 +55,9 @@ Prek hooks:
 
 Consists of a uv project boilerplate for the project.
 
+**Requirements:**
+- Install [Quarto](https://quarto.org/) for Great Docs rendering
+
 Prek hooks:
 
 - **ty**: Type checking with ty
@@ -52,7 +68,7 @@ Prek hooks:
 **Test Coverage:**
 
 - Locally: `uv sync`, `uv tool install prek`, then `prek install --hook-type pre-commit --hook-type pre-push`. Tests run on push, or manually via `prek run --all-files --hook-stage pre-push`; open `htmlcov/index.html` afterwards.
-- On GitHub: the coverage summary table appears on each workflow run page, PR runs upload the HTML as the `coverage-html` artifact, and pushes to main publish the full report to `https://<owner>.github.io/<repo>/`.
+- On GitHub: the coverage summary table appears on each workflow run page, PR runs upload the HTML as the `coverage-html` artifact, and pushes to main publish the full report to `https://<owner>.github.io/<repo>/coverage/`.
 - One-time setup for repos created from this template: Settings → Pages → Source: "GitHub Actions" (or `gh api -X POST repos/<owner>/<repo>/pages -f build_type=workflow`).
 
 ### Renovate
