@@ -49,6 +49,14 @@ Prek hooks:
 - **ruff**: Lints Python files
 - **ruff-format**: Formats Python files
 
+**Test Coverage:**
+
+- Run locally: `pytest`, then open `htmlcov/index.html` in your browser
+- On GitHub: the coverage summary table appears on each workflow run page
+- PR runs upload the HTML report as the `coverage-html` artifact
+- Pushes to main publish the full report to `https://<owner>.github.io/<repo>/`
+- One-time setup for repos created from this template: Settings → Pages → Source: "GitHub Actions" (or `gh api -X POST repos/<owner>/<repo>/pages -f build_type=workflow`)
+
 ### Renovate
 
 Adds a [Renovate](https://docs.renovatebot.com/) configuration file for automated dependency updates.
