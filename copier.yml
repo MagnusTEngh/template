@@ -13,6 +13,18 @@ components:
     - nix
     - python
     - agents
+    - renovate
+
+renovate_level:
+  type: str
+  help: Renovate update level
+  choices:
+    - minimal
+    - patch
+    - minor
+    - yolo
+  default: minimal
+  when: "'renovate' in components"
 
 _tasks:
   - if: "'git' in components"
@@ -31,3 +43,4 @@ _exclude:
   - "{% if 'python' not in components %}src/**{% endif %}"
   - "{% if 'python' not in components %}pyproject.toml{% endif %}"
   - "{% if 'python' not in components %}python-version{% endif %}"
+  - "{% if 'renovate' not in components %}.github/renovate.json{% endif %}"
