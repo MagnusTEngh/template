@@ -56,6 +56,7 @@ Adds a [Renovate](https://docs.renovatebot.com/) configuration file for automate
 **Features:**
 - All levels refuse updates newer than 7 days and group dependencies together
 - When the **Nix** component is also enabled, Renovate will maintain Nix flake files
+- When the **Python** component is also enabled, Renovate will maintain Python dependencies (pyproject.toml, uv.lock, etc.)
 
 **Configuration Levels:**
 
