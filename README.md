@@ -53,6 +53,10 @@ Prek hooks:
 
 Adds a [Renovate](https://docs.renovatebot.com/) configuration file for automated dependency updates.
 
+**Features:**
+- All levels refuse updates newer than 7 days and group dependencies together
+- When the **Nix** component is also enabled, Renovate will maintain Nix flake files
+
 **Configuration Levels:**
 
 - **minimal**: Only opens PRs, does NOT auto-merge. All updates newer than 7 days are refused and grouped.
