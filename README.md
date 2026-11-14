@@ -45,9 +45,15 @@ Consists of a uv project boilerplate for the project.
 Prek hooks:
 
 - **ty**: Type checking with ty
-- **pytest**: Runs Python tests
+- **pytest with coverage**: Runs tests with coverage on pre-push
 - **ruff**: Lints Python files
 - **ruff-format**: Formats Python files
+
+**Test Coverage:**
+
+- Locally: `uv sync`, `uv tool install prek`, then `prek install --hook-type pre-commit --hook-type pre-push`. Tests run on push, or manually via `prek run --all-files --hook-stage pre-push`; open `htmlcov/index.html` afterwards.
+- On GitHub: the coverage summary table appears on each workflow run page, PR runs upload the HTML as the `coverage-html` artifact, and pushes to main publish the full report to `https://<owner>.github.io/<repo>/`.
+- One-time setup for repos created from this template: Settings → Pages → Source: "GitHub Actions" (or `gh api -X POST repos/<owner>/<repo>/pages -f build_type=workflow`).
 
 ### Renovate
 

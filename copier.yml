@@ -42,5 +42,7 @@ _exclude:
   - "{% if 'nix' not in components %}flake.nix{% endif %}"
   - "{% if 'python' not in components %}src/**{% endif %}"
   - "{% if 'python' not in components %}pyproject.toml{% endif %}"
-  - "{% if 'python' not in components %}python-version{% endif %}"
+  - "{% if 'python' not in components %}.python-version{% endif %}"
+  - "{% if 'python' not in components %}.github/workflows/tests.yml{% endif %}"
+  - "{% if 'python' not in components %}uv.lock{% endif %}"
   - "{% if 'renovate' not in components %}.github/renovate.json{% endif %}"

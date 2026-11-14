@@ -47,12 +47,13 @@ stages:
         files: \.py$
         stages: [python]
 
-      - id: pytest
-        name: Tests
-        entry: .prek/hooks/pytest.sh
-        language: script
-        files: \.py$
-        stages: [python]
+      - id: pytest-coverage
+        name: pytest with coverage
+        entry: uv run pytest
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]
 
       - id: ruff
         name: Ruff Lint
