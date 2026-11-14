@@ -48,3 +48,14 @@ Prek hooks:
 - **pytest**: Runs Python tests
 - **ruff**: Lints Python files
 - **ruff-format**: Formats Python files
+
+### Renovate
+
+Adds a [Renovate](https://docs.renovatebot.com/) configuration file for automated dependency updates.
+
+**Configuration Levels:**
+
+- **minimal**: Only opens PRs, does NOT auto-merge. All updates newer than 7 days are refused and grouped.
+- **patch**: Auto-merges patch updates. All updates newer than 7 days are refused and grouped.
+- **minor**: Auto-merges patch and minor updates. All updates newer than 7 days are refused and grouped.
+- **yolo**: Auto-merges ALL updates (patch, minor, major). All updates newer than 7 days are refused and grouped.
