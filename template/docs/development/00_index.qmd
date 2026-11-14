@@ -4,12 +4,160 @@ title: Development Guide
 
 # Development Guide
 
-## Setup
+This guide explains how to use the different components of this template.
 
+## Prerequisites
 
+{% if 'python' in components %}
+### Python Environment
 
-## Testing
+- Install [uv](https://github.com/astral-sh/uv) for Python package management
+- Install [Quarto](https://quarto.org/) for documentation rendering (required for Great Docs)
+- Install dependencies: `uv sync --all-groups`
+- Install prek hooks: `uv tool install prek` then `prek install --hook-type pre-commit --hook-type pre-push`
 
+{% endif %}
 
+## Component Guides
 
-## Standards
+{% if 'python' in components %}
+### Python Development
+
+#### Running Tests
+
+Run all tests with coverage:
+```bash
+prek run --all-files --hook-stage pre-push
+```
+
+Or run pytest directly:
+```bash
+uv run pytest
+```
+
+#### Test Coverage
+
+- View local HTML report: Open `htmlcov/index.html` in your browser
+- Coverage is automatically generated on every test run
+- Minimum coverage threshold: 80% (configurable in pyproject.toml)
+
+#### Code Quality
+
+- **Type checking**: `uv run ty` (if ty is configured)
+- **Linting**: `uv run ruff check .`
+- **Formatting**: `uv run ruff format .`
+
+{% endif %}
+
+{% if 'nix' in components %}
+### Nix Development
+
+#### Development Shell
+
+Enter the Nix development shell:
+```bash
+nix develop
+```
+
+This provides all the tools and dependencies defined in `flake.nix`.
+
+#### Nix Tools
+
+- **Format**: `nix fmt`
+- **Lint**: `nix run nixpkgs/statix -- check`
+- **Dead code check**: `nix run nixpkgs/deadnix -- .`
+
+{% endif %}
+
+{% if 'git' in components %}
+### Git Configuration
+
+The template includes:
+- `.gitattributes` for file handling and line endings
+- `.gitmessage` for commit message template
+
+These files are automatically included when you initialize a git repository.
+
+{% endif %}
+
+{% if 'agents' in components %}
+### Agent Skills
+
+The template includes a collection of skills in `.agents/skills/`:
+- **curator**: Documentation maintenance
+- **leader**: Project leadership
+- **reviewer**: Code review
+- **worker**: General development
+- Plus 38 Matt Pocock skills for various development tasks
+
+To use these skills, configure your agent to load skills from the `.agents/skills/` directory.
+
+{% endif %}
+
+{% if 'docs' in components %}
+### Documentation
+
+#### Building Docs
+
+Build the documentation site:
+```bash
+uv run great-docs build
+```
+
+Preview locally:
+```bash
+uv run great-docs preview
+```
+
+#### Documentation Structure
+
+- **User Guide**: All content in `docs/` directory
+- **Architecture**: Architecture overview and ADRs in `docs/architecture/`
+- **Development**: This guide and development standards
+- **Reference**: Glossary and reference materials
+- **Test Coverage**: View coverage report at `/coverage/` in the built site
+
+{% endif %}
+
+{% if 'renovate' in components %}
+### Dependency Updates (Renovate)
+
+Renovate is configured to automatically update dependencies:
+
+#### Configuration Levels
+
+- **minimal**: Only opens PRs, does NOT auto-merge
+- **patch**: Auto-merges patch updates
+- **minor**: Auto-merges patch and minor updates  
+- **yolo**: Auto-merges ALL updates (patch, minor, major)
+
+#### Common Settings
+
+All levels:
+- Refuse updates newer than 7 days
+- Group dependencies together
+- {% if 'nix' in components %}Also maintains Nix flake files{% endif %}
+- {% if 'python' in components %}Also maintains Python dependencies (pyproject.toml, uv.lock){% endif %}
+
+{% endif %}
+
+## Workflow
+
+{% if 'python' in components %}
+1. Install dependencies: `uv sync --all-groups`
+2. Install prek hooks: `uv tool install prek && prek install --hook-type pre-commit --hook-type pre-push`
+3. Develop your code
+4. Run tests: `prek run --all-files --hook-stage pre-push` (runs on pre-push automatically)
+5. {% if 'docs' in components %}Build docs: `uv run great-docs build`{% endif %}
+
+{% endif %}
+
+{% if 'git' in components %}
+## Git Hooks
+
+The template uses [Prek](https://github.com/prek/prek) for git hooks:
+- Hooks are organized by component and stage
+- Only active components have their hooks installed
+- Run `prek install --hook-type pre-commit --hook-type pre-push` to set up hooks
+
+{% endif %}
