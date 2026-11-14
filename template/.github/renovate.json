@@ -9,6 +9,9 @@
     "pip",
     "dockerfile",
     "docker-compose"
+    {% if 'nix' in components %},
+    ,"flake"
+    {% endif %}
   ],
   "ignoreUnstable": true,
   "age": {
@@ -21,9 +24,20 @@
   "packageRules": [
     {
       "matchUpdateTypes": ["major", "minor", "patch"],
-      "matchDatasources": ["npm", "pypi", "docker"],
+      "matchDatasources": ["npm", "pypi", "docker"{% if 'nix' in components %}, "nixpkgs"{% endif %}],
       "rangeStrategy": "bump"
     },
+    {% if 'nix' in components %}
+    {
+      "description": "Nix flake updates",
+      "matchManagers": ["flake"],
+      "matchPackagePatterns": ["*"],
+      "groupName": "nix dependencies",
+      "groupSlug": "nix",
+      "enabled": true,
+      "rangeStrategy": "bump"
+    },
+    {% endif %}
     {
       "description": "Group all updates together",
       "matchPackagePatterns": ["*"],
