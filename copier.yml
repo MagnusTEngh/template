@@ -36,10 +36,11 @@ _tasks:
     help: Initialize git repository if not already present
   - if: "'docs' in components and 'python' not in components"
     cmd: |
-      echo "Error: The 'docs' component requires 'python' to be selected."
-      echo "Great Docs is a Python package and requires Python to function."
-      exit 1
-    help: Ensure Python is selected when docs is selected
+      echo "WARNING: The 'docs' component is selected without 'python'."
+      echo "Great Docs requires Python to function properly."
+      echo "It is strongly recommended to also enable the 'python' component."
+      echo "The docs will be included as .qmd files, but Great Docs build will not work."
+    help: Warn about docs without python
 
 _exclude:
   - "{% if 'git' not in components %}.gitattributes{% endif %}"
