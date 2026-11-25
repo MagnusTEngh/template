@@ -85,12 +85,12 @@
   "lockFileMaintenance": {
     "enabled": true,
     "schedule": ["before 5am every weekday"],
-    {% if renovate_level == 'minimal' %}
-    "automerge": false,
-    {% else %}
+    {%- if renovate_level == 'minimal' %}
+    "automerge": false
+    {%- else %}
     "automerge": true,
     "automergeType": "pr"
-    {% endif %}
+    {%- endif %}
   },
   "rangeStrategy": "bump",
   "ignorePaths": [
