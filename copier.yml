@@ -13,6 +13,7 @@ components:
     - nix
     - python
     - agents
+    - docs
 
 _tasks:
   - if: "'git' in components"
@@ -21,6 +22,12 @@ _tasks:
         git init
       fi
     help: Initialize git repository if not already present
+  - if: "'docs' in components and 'python' not in components"
+    cmd: |
+      echo "Error: The 'docs' component requires 'python' to be selected."
+      echo "Great Docs is a Python package and requires Python to function."
+      exit 1
+    help: Ensure Python is selected when docs is selected
 
 _exclude:
   - "{% if 'git' not in components %}.gitattributes{% endif %}"
@@ -30,4 +37,8 @@ _exclude:
   - "{% if 'nix' not in components %}flake.nix{% endif %}"
   - "{% if 'python' not in components %}src/**{% endif %}"
   - "{% if 'python' not in components %}pyproject.toml{% endif %}"
-  - "{% if 'python' not in components %}python-version{% endif %}"
+  - "{% if 'python' not in components %}.python-version{% endif %}"
+  - "{% if 'python' not in components %}.github/workflows/tests.yml{% endif %}"
+  - "{% if 'docs' not in components %}docs/**{% endif %}"
+  - "{% if 'docs' not in components %}great-docs.yml{% endif %}"
+  - "{% if 'docs' not in components %}scripts/coverage_page.py{% endif %}"

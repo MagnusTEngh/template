@@ -1,4 +1,8 @@
-# ADR index
+---
+title: ADR Index
+---
+
+# ADR Index
 
 | ADR | Status |
 |---|---|
@@ -10,4 +14,4 @@
 - Accepted: Decision approved
 - Rejected: Decision considered but not adopted
 - Deprecated: No longer relevant
-- Superseded: Replaced by another ADR
+- Suprecated: Replaced by another ADR

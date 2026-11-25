@@ -45,6 +45,11 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
+
+# Great Docs
+great-docs/
+docs/coverage.qmd
+coverage.json
 *.cover
 *.py.cover
 *.lcov

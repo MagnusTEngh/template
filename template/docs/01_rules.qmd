@@ -1,4 +1,8 @@
-# Rules for documentation
+---
+title: Rules for Documentation
+---
+
+# Rules for Documentation
 
 - Every document should have one clear purpose.
 - Use relative links between Markdown files.

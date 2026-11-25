@@ -1,3 +1,7 @@
+---
+title: Architecture Overview
+---
+
 # Architecture Overview
 
 ## Purpose
@@ -15,4 +19,3 @@ Include a diagram where useful.
 | Area | Technology | Purpose |
 |------|------------|---------|
 | | | |
-
