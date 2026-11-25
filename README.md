@@ -26,18 +26,22 @@ Adds some boilerplate skills and tools to enable efficient use of agents.
 
 Scaffolding for a detailed and structured docs/ folder using [Great Docs](https://github.com/posit-dev/great-docs).
 
-**Note**: The Docs component requires the Python component to be selected, as Great Docs is a Python package.
+**Note**: The Docs component can be used without Python, but Great Docs requires Python to function. If you enable Docs without Python, you will get the .qmd files but Great Docs build will not work. It is recommended to enable both Docs and Python components together.
 
 **Features:**
 - All existing docs/ content is included as the User Guide
-- Test coverage results are displayed in the docs site at `/coverage/`
+- Test coverage results are displayed in the docs site at `/coverage/` (when Python is also enabled)
 - Site is published to `https://<owner>.github.io/<repo>/`
 
-**Local Usage:**
+**Local Usage (with Python):**
 - Install [Quarto](https://quarto.org/) for rendering
 - Install dependencies: `uv sync --all-groups`
 - Build the site: `uv run great-docs build`
 - Preview locally: `uv run great-docs preview`
+
+**Local Usage (without Python):**
+- Install [Quarto](https://quarto.org/) for rendering
+- Use Quarto directly: `quarto render docs/`
 
 **One-time setup**: Settings → Pages → Source: "GitHub Actions" (or `gh api -X POST repos/<owner>/<repo>/pages -f build_type=workflow`)
 
