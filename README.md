@@ -2,6 +2,14 @@
 
 Repository template for projects.
 
+## Template CI
+
+`.github/workflows/template-ci.yml` generates this repository as a new project with **all components enabled** and verifies that:
+
+- the generated Python environment builds (`uv sync --all-groups`),
+- the generated Nix flake evaluates and its default package builds (`nix flake check`, `nix build`),
+- every prek hook passes in the generated project (`prek run -a`).
+
 ## Common
 
 pre-commit boilerplate, which includes tools for each component if applicable.
