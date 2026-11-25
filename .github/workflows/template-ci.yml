@@ -48,6 +48,12 @@ jobs:
       - name: Check generated Nix flake
         run: nix flake check ./generated
 
+      - name: Commit generated lock files
+        working-directory: generated
+        run: |
+          git add -A
+          git diff --cached --quiet || git commit -m "Add lock files"
+
       - name: Build generated flake default package
         run: nix build ./generated
 
