@@ -1,4 +1,6 @@
 _subdirectory: template
+_min_copier_version: "9.0.0"
+templates_suffix: ".jinja"
 
 project_name:
   type: str
@@ -28,31 +30,31 @@ renovate_level:
   default: minimal
 
 _tasks:
-  - if: "'git' in components"
-    cmd: |
+  - command: |
       if [ ! -d .git ]; then
         git init
       fi
+    when: "{% if 'git' in components %}true{% endif %}"
     help: Initialize git repository if not already present
-  - if: "'docs' in components and 'python' not in components"
-    cmd: |
+  - command: |
       echo "WARNING: The 'docs' component is selected without 'python'."
       echo "Great Docs requires Python to function properly."
       echo "It is strongly recommended to also enable the 'python' component."
       echo "The docs will be included as .qmd files, but Great Docs build will not work."
+    when: "{% if 'docs' in components and 'python' not in components %}true{% endif %}"
     help: Warn about docs without python
 
 _exclude:
   - "{% if 'git' not in components %}.gitattributes{% endif %}"
   - "{% if 'git' not in components %}.gitmessage{% endif %}"
-  - "{% if 'agents' not in components %}AGENTS.md{% endif %}"
+  - "{% if 'agents' not in components %}AGENTS.md.jinja{% endif %}"
   - "{% if 'agents' not in components %}.agents/**{% endif %}"
-  - "{% if 'nix' not in components %}flake.nix{% endif %}"
+  - "{% if 'nix' not in components %}flake.nix.jinja{% endif %}"
   - "{% if 'python' not in components %}src/**{% endif %}"
-  - "{% if 'python' not in components %}pyproject.toml{% endif %}"
+  - "{% if 'python' not in components %}pyproject.toml.jinja{% endif %}"
   - "{% if 'python' not in components %}.python-version{% endif %}"
-  - "{% if 'python' not in components %}.github/workflows/tests.yml{% endif %}"
+  - "{% if 'python' not in components %}.github/workflows/tests.yml.jinja{% endif %}"
   - "{% if 'docs' not in components %}docs/**{% endif %}"
-  - "{% if 'docs' not in components %}great-docs.yml{% endif %}"
-  - "{% if 'docs' not in components %}scripts/coverage_page.py{% endif %}"
-  - "{% if 'renovate' not in components %}.github/renovate.json{% endif %}"
+  - "{% if 'docs' not in components %}great-docs.yml.jinja{% endif %}"
+  - "{% if 'docs' not in components %}scripts/coverage_page.py.jinja{% endif %}"
+  - "{% if 'renovate' not in components %}.github/renovate.json.jinja{% endif %}"
