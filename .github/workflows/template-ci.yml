@@ -1,0 +1,63 @@
+name: Template CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    name: Generate and check with all components
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v13
+
+      - name: Install copier
+        run: uv tool install copier
+
+      - name: Generate template with all components
+        run: |
+          copier copy --defaults --trust \
+            --data project_name="template-test" \
+            --data 'components=["git","nix","python","agents","docs","renovate"]' \
+            "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE/generated"
+
+      - name: Build generated project
+        working-directory: generated
+        run: uv sync --all-groups
+
+      - name: Check generated Nix flake
+        run: nix flake check ./generated
+
+      - name: Build generated flake default package
+        run: nix build ./generated
+
+      - name: Install nix hook tools
+        run: |
+          nix profile install nixpkgs#statix nixpkgs#deadnix
+          echo "$HOME/.nix-profile/bin" >> "$GITHUB_PATH"
+
+      - name: Commit generated project
+        working-directory: generated
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Initial commit"
+
+      - name: Run prek on generated project
+        working-directory: generated
+        run: |
+          source .venv/bin/activate
+          prek run -a --show-diff-on-failure
