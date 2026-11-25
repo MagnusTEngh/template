@@ -7,13 +7,25 @@ project_name:
 components:
   type: str
   multiselect: true
-  help: Which components should be included?
+  default: ['git', 'nix', 'python', 'agents', 'docs', 'renovate']
+  help: Which components should be included? (All enabled by default)
   choices:
     - git
     - nix
     - python
     - agents
     - docs
+    - renovate
+
+renovate_level:
+  type: str
+  help: Renovate update level
+  choices:
+    - minimal
+    - patch
+    - minor
+    - yolo
+  default: minimal
 
 _tasks:
   - if: "'git' in components"
@@ -42,3 +54,4 @@ _exclude:
   - "{% if 'docs' not in components %}docs/**{% endif %}"
   - "{% if 'docs' not in components %}great-docs.yml{% endif %}"
   - "{% if 'docs' not in components %}scripts/coverage_page.py{% endif %}"
+  - "{% if 'renovate' not in components %}.github/renovate.json{% endif %}"
