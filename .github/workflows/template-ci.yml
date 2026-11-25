@@ -54,6 +54,9 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "Add lock files"
 
+      - name: Show generated flake
+        run: nix flake show ./generated
+
       - name: Build generated flake default package
         run: nix build ./generated
 
